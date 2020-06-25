@@ -863,9 +863,7 @@ static void payment_finished(struct payment *p)
 			json_add_u32(ret, "failcode", result.failure->failcode);
 			json_add_string(ret, "failcodename",
 					result.failure->failcodename);
-			json_add_num(ret, "code", result.failure->code);
 
-			json_object_start(ret, "data");
 			if (p->bolt11)
 				json_add_string(ret, "bolt11", p->bolt11);
 
@@ -916,7 +914,6 @@ static void payment_finished(struct payment *p)
 					    ret, "erring_direction",
 					    *failure->erring_direction);
 			}
-			json_object_end(ret);
 
 			if (command_finished(cmd, ret)) {/* Ignore result. */}
 			return;
