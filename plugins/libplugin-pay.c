@@ -951,7 +951,10 @@ retry_data_init(struct payment *p)
 	return rdata;
 }
 
-/* Determine whether retrying could possibly succeed. */
+/* Determine whether retrying could possibly succeed. Retrying in this case
+ * means that we repeat the entire flow, including computing a new route, new
+ * payload and a new sendonion call. It does not mean we retry the exact same
+ * attempt that just failed. */
 static bool payment_can_retry(struct payment *p)
 {
 	struct payment_result *res = p->result;
