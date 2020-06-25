@@ -1511,7 +1511,7 @@ static bool attempt_ongoing(const char *b11)
 	struct pay_attempt *attempt;
 	struct payment_tree_result res;
 	enum payment_step diff,
-	    finalized = PAYMENT_STEP_FAILED | PAYMENT_STEP_SUCCESS;
+	    final_states = PAYMENT_STEP_FAILED | PAYMENT_STEP_SUCCESS;
 
 	list_for_each(&pay_status, ps, list) {
 		if (!streq(b11, ps->bolt11))
@@ -1524,7 +1524,7 @@ static bool attempt_ongoing(const char *b11)
 		if (root->bolt11 == NULL || !streq(b11, root->bolt11))
 			continue;
 		res = payment_collect_result(root);
-		diff = res.leafstates & ~finalized;
+		diff = res.leafstates & ~final_states;
 		return diff != 0;
 	}
 	return false;
