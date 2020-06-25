@@ -1629,7 +1629,7 @@ static struct command_result *listsendpays_done(struct command *cmd,
 		if (!pm) {
 			pm = tal(cmd, struct pay_mpp);
 			pm->payment_hash = tal_dup(pm, struct sha256, &payment_hash);
-			pm->b11 = b11 ? tal_steal(pm, b11) : NULL;
+			pm->b11 = tal_steal(pm, b11);
 			pm->label = json_get_member(buf, t, "label");
 			pm->preimage = NULL;
 			pm->amount_sent = AMOUNT_MSAT(0);
