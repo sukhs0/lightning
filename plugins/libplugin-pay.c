@@ -238,7 +238,7 @@ static struct command_result *payment_getroute_error(struct command *cmd,
 }
 
 /* Iterate through the channel_hints and exclude any channel that we are
- * confidet will not be able to handle this payment. */
+ * confident will not be able to handle this payment. */
 static void payment_getroute_add_excludes(struct payment *p,
 					  struct json_stream *js)
 {
