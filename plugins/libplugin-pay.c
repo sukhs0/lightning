@@ -846,7 +846,7 @@ static void payment_finished(struct payment *p)
 			    ret, "message",
 			    tal_fmt(cmd,
 				    "Ran out of routes to try after "
-				    "%d attempt%s: see paystatus",
+				    "%d attempt%s: see `paystatus`",
 				    result.attempts,
 				    result.attempts == 1 ? "" : "s"));
 			if (command_finished(cmd, ret)) {/* Ignore result. */}
