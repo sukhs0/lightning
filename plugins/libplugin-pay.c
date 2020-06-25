@@ -539,6 +539,12 @@ payment_waitsendpay_finished(struct command *cmd, const char *buffer,
 	case WIRE_FINAL_INCORRECT_HTLC_AMOUNT:
 		/* These are symptoms of intermediate hops tampering with the
 		 * payment. */
+		hop = &p->route[*p->result->erring_index];
+		plugin_log(
+		    p->plugin, LOG_UNUSUAL,
+		    "Node %s reported an incorrect HTLC amount, this could be "
+		    "a prior hop messing with the amounts.",
+		    type_to_string(tmpctx, struct node_id, &hop->nodeid));
 		break;
 	}
 
